@@ -1,16 +1,21 @@
 import collect
-
+from config import CONFIG
 
 if __name__ == '__main__':
     #collect
     collect.crawling_tourspot_visitor(
-        district='서울특별시',
-        start_year=2017,
-        end_year=2017)
+        district=CONFIG['district'],
+        **CONFIG['common']   #CONFIG['common']['start_year'] 가 가장 무난 딕셔너리로 보내는데 하나로 보내고 싶다면
+                             #딕셔너리 형태로 ?
+        )
 
-    for country in [('중국', 112), ('일본', 130), ('미국', 275)]:
-            collect.crawling_foreign_visitor(country, 2017, 2017)
+    for country in CONFIG['countries']:
+            collect.crawling_foreign_visitor(country,  **CONFIG['common'])
+
+
 
     #analysis
+
+
 
     #visualize
